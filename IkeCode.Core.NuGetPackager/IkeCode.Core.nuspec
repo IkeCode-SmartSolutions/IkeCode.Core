@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>IkeCode.Core</id>
+    <version>1.0.0</version>
+    <title>IkeCode.Core</title>
+    <authors>Leandro Barral</authors>
+    <owners>IkeCode</owners>
+    <description>
+      Projeto com classes utilitarias para varios segmentos, log, leitura de xml, criptografia, cache, etc.
+    </description>
+    <releaseNotes>
+    </releaseNotes>
+    <summary>
+      Projeto com classes utilitarias para varios segmentos, log, leitura de xml, criptografia, cache, etc.
+    </summary>
+    <language>en-US</language>
+    <projectUrl>https://nuget.org/packages/IkeCode.Core.NuGetPackager</projectUrl>
+    <iconUrl>https://avatars2.githubusercontent.com/u/16226306</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>
+    <copyright>Copyright IkeCode 2016</copyright>
+    <dependencies>
+        <group targetFramework="net40">
+          <dependency id="Newtonsoft.Json" version="8.0.0" />
+        </group>
+    </dependencies>
+    <references></references>
+    <tags>ikecode, tools, utils</tags>
+  </metadata>
+  <files>
+    <file src="lib\" target="lib" />
+    <file src="tools\" target="tools" />
+    <file src="content\" target="content" />
+  </files>
+</package>
