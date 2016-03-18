@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Globalization;
-using System.Web.Script.Serialization;
 using System.Xml;
 
 namespace IkeCode.Core
@@ -474,7 +473,7 @@ namespace IkeCode.Core
         
         public static T FromJsonString<T>(string json)
         {
-            return new JavaScriptSerializer().Deserialize<T>(json);
+            return JsonConvert.DeserializeObject<T>(json);
         }
    
         #endregion
