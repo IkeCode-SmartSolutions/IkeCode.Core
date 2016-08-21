@@ -466,10 +466,10 @@ namespace IkeCode.Core
             return result;
         }
 
-        public static string ToJsonString(this XmlDocument obj)
-        {
-            return JsonConvert.SerializeXmlNode(obj);
-        }
+        //public static string ToJsonString(this XmlDocument obj)
+        //{
+        //    return JsonConvert.SerializeXmlNode(obj);
+        //}
         
         public static T FromJsonString<T>(string json)
         {

@@ -1,0 +1,22 @@
+{
+  "title": "IkeCode.Core",
+  "copyright": "IkeCode",
+  "description": "IkeCode.Core",
+  "version": "1.0.0-*",
+  "dependencies": {
+    "NETStandard.Library": "1.6.0",
+    "Newtonsoft.Json": "9.0.1",
+    "System.ComponentModel.Annotations": "4.1.0",
+    "System.Data.SqlClient": "4.1.0",
+    "System.IO.FileSystem.Watcher": "4.0.0",
+    "System.Xml.XmlDocument": "4.0.1"
+  },
+  "frameworks": {
+    "netstandard1.6": {
+      "imports": "dnxcore50"
+    }
+  },
+  "buildOptions": {
+    "optimize": true
+  }
+}

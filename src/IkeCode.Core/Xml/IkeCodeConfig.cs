@@ -78,7 +78,7 @@ namespace IkeCode.Core.Xml
 
         public static string GetConfigFolderPath()
         {
-            return AppDomain.CurrentDomain.BaseDirectory + @"Config\";
+            return AppContext.BaseDirectory + @"Config\";
         }
 
         public string GetText(string section, string key)
@@ -114,14 +114,14 @@ namespace IkeCode.Core.Xml
             return result;
         }
 
-        public string GetJson()
-        {
-            var path = GetPath(File, IsDictionary, true);
-            var doc = new XmlDocument();
-            doc.Load(path);
-
-            return doc.ToJsonString();
-        }
+        //public string GetJson()
+        //{
+        //    var path = GetPath(File, IsDictionary, true);
+        //    var doc = new XmlDocument();
+        //    doc.LoadXml(path);
+        //
+        //    return doc.ToJsonString();
+        //}
 
         public object GetAttribute(string name)
         {

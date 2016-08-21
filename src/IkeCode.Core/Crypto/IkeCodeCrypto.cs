@@ -19,7 +19,7 @@ namespace IkeCode.Core.Crypto
             if (phrase == null)
                 return null;
             var encoder = new UTF8Encoding();
-            using (var md5Hasher = new MD5CryptoServiceProvider())
+            using (var md5Hasher = MD5.Create())
             {
                 var hashedDataBytes = md5Hasher.ComputeHash(encoder.GetBytes(phrase));
                 return ByteArrayToHexString(hashedDataBytes);
@@ -35,7 +35,7 @@ namespace IkeCode.Core.Crypto
             if (phrase == null)
                 return null;
             var encoder = new UTF8Encoding();
-            using (var sha1Hasher = new SHA1CryptoServiceProvider())
+            using (var sha1Hasher = SHA1.Create())
             {
                 var hashedDataBytes = sha1Hasher.ComputeHash(encoder.GetBytes(phrase));
                 return ByteArrayToHexString(hashedDataBytes);
@@ -47,7 +47,7 @@ namespace IkeCode.Core.Crypto
             if (phrase == null)
                 return null;
             var encoder = new UTF8Encoding();
-            using (var sha256Hasher = new SHA256CryptoServiceProvider())
+            using (var sha256Hasher = SHA256.Create())
             {
                 var hashedDataBytes = sha256Hasher.ComputeHash(encoder.GetBytes(phrase));
                 return ByteArrayToHexString(hashedDataBytes);
@@ -59,7 +59,7 @@ namespace IkeCode.Core.Crypto
             if (phrase == null)
                 return null;
             var encoder = new UTF8Encoding();
-            using (var sha384Hasher = new SHA384CryptoServiceProvider())
+            using (var sha384Hasher = SHA384.Create())
             {
                 var hashedDataBytes = sha384Hasher.ComputeHash(encoder.GetBytes(phrase));
                 return ByteArrayToHexString(hashedDataBytes);
@@ -71,7 +71,7 @@ namespace IkeCode.Core.Crypto
             if (phrase == null)
                 return null;
             var encoder = new UTF8Encoding();
-            using (var sha512Hasher = new SHA512CryptoServiceProvider())
+            using (var sha512Hasher = SHA512.Create())
             {
                 var hashedDataBytes = sha512Hasher.ComputeHash(encoder.GetBytes(phrase));
                 return ByteArrayToHexString(hashedDataBytes);
@@ -91,16 +91,10 @@ namespace IkeCode.Core.Crypto
             var toEncryptArray = Encoding.UTF8.GetBytes(phrase);
             byte[] result;
 
-            using (var aes = new AesCryptoServiceProvider
-            {
-                Key = keyArray,
-                Mode = CipherMode.ECB,
-                Padding = PaddingMode.PKCS7
-            })
+            using (var aes = Aes.Create())
             {
                 var cTransform = aes.CreateEncryptor();
                 result = cTransform.TransformFinalBlock(toEncryptArray, 0, toEncryptArray.Length);
-                aes.Clear();
             }
             return ByteArrayToHexString(result);
         }
@@ -113,17 +107,11 @@ namespace IkeCode.Core.Crypto
             var keyArray = HexStringToByteArray(hashKey ? HashMD5(key) : key);
             var toEncryptArray = HexStringToByteArray(hash);
 
-            using (var aes = new AesCryptoServiceProvider
-            {
-                Key = keyArray,
-                Mode = CipherMode.ECB,
-                Padding = PaddingMode.PKCS7
-            })
+            using (var aes = Aes.Create())
             {
                 var cTransform = aes.CreateDecryptor();
                 var resultArray = cTransform.TransformFinalBlock(toEncryptArray, 0, toEncryptArray.Length);
-
-                aes.Clear();
+                
                 return Encoding.UTF8.GetString(resultArray);
             }
         }
@@ -137,17 +125,11 @@ namespace IkeCode.Core.Crypto
             var keyArray = HexStringToByteArray(hashKey ? HashMD5(key) : key);
             var toEncryptArray = Encoding.UTF8.GetBytes(phrase);
 
-            using (var tdes = new TripleDESCryptoServiceProvider
-            {
-                Key = keyArray,
-                Mode = CipherMode.ECB,
-                Padding = PaddingMode.PKCS7
-            })
+            using (var tdes = TripleDES.Create())
             {
                 var cTransform = tdes.CreateEncryptor();
                 var resultArray = cTransform.TransformFinalBlock(toEncryptArray, 0, toEncryptArray.Length);
-
-                tdes.Clear();
+                
                 return ByteArrayToHexString(resultArray);
             }
         }
@@ -157,17 +139,11 @@ namespace IkeCode.Core.Crypto
             var keyArray = HexStringToByteArray(hashKey ? HashMD5(key) : key);
             var toEncryptArray = HexStringToByteArray(hash);
 
-            using (var tdes = new TripleDESCryptoServiceProvider
-            {
-                Key = keyArray,
-                Mode = CipherMode.ECB,
-                Padding = PaddingMode.PKCS7
-            })
+            using (var tdes = TripleDES.Create())
             {
                 var cTransform = tdes.CreateDecryptor();
                 var resultArray = cTransform.TransformFinalBlock(toEncryptArray, 0, toEncryptArray.Length);
-
-                tdes.Clear();
+                
                 return Encoding.UTF8.GetString(resultArray);
             }
         }

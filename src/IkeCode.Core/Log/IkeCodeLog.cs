@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using System.Web.Hosting;
 using System.Xml.Linq;
 
 namespace IkeCode.Core.Log
@@ -22,12 +21,12 @@ namespace IkeCode.Core.Log
         public IkeCodeLog()
         {
             FileNamePrefix = "IkeCode_";
-            var directoryName = HostingEnvironment.ApplicationPhysicalPath;
+            var directoryName = AppContext.BaseDirectory;
             
             //For migrations
             if (string.IsNullOrEmpty(directoryName))
             {
-                var absolutePath = new Uri(Assembly.GetExecutingAssembly().CodeBase).AbsolutePath;
+                var absolutePath = new Uri(Assembly.GetEntryAssembly().CodeBase).AbsolutePath;
                 directoryName = Path.GetDirectoryName(absolutePath);                
             }
 
@@ -70,7 +69,7 @@ namespace IkeCode.Core.Log
 
                     var path = GetConfig("logPath");
                     if (string.IsNullOrWhiteSpace(path))
-                        path = Path.Combine(HostingEnvironment.ApplicationPhysicalPath, "logs");
+                        path = Path.Combine(AppContext.BaseDirectory, "logs");
                     if (!Directory.Exists(path))
                         Directory.CreateDirectory(path);
 

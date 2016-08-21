@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>IkeCode.Core</id>
-    <version>1.0.0.1</version>
+    <version>1.0.0.2</version>
     <title>IkeCode.Core</title>
     <authors>Leandro Barral</authors>
     <owners>IkeCode</owners>
@@ -21,9 +21,8 @@
     <licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>
     <copyright>Copyright IkeCode 2016</copyright>
     <dependencies>
-        <group targetFramework="net40">
-          <dependency id="Microsoft.Net.Compilers" version="1.1.1" />
-          <dependency id="Newtonsoft.Json" version="8.0.3" />
+        <group targetFramework="netcore">
+          <dependency id="Newtonsoft.Json" version="9.0.1" />
         </group>
     </dependencies>
     <references></references>
